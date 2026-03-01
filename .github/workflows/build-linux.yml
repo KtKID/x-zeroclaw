@@ -11,7 +11,7 @@ concurrency:
     cancel-in-progress: false
 
 permissions:
-    contents: read
+    contents: write
 
 env:
     GIT_CONFIG_COUNT: "1"
@@ -39,9 +39,12 @@ jobs:
             - name: Build binary
               run: cargo build --profile dist --locked --verbose
 
-            - name: Upload binary artifact
-              uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
-              with:
-                  name: zeroclaw-linux-x86_64
-                  path: target/dist/zeroclaw
-                  retention-days: 7
+            - name: Rename binary
+              run: cp target/dist/zeroclaw zeroclaw-linux-x86_64
+
+            - name: Upload to GitHub Release
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  TAG="${{ github.ref_name }}"
+                  gh release upload "$TAG" zeroclaw-linux-x86_64 --clobber
