@@ -39,12 +39,11 @@ jobs:
             - name: Build binary
               run: cargo build --profile dist --locked --verbose
 
-            - name: Rename binary
-              run: cp target/dist/zeroclaw zeroclaw-linux-x86_64
-
             - name: Upload to GitHub Release
               env:
                   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
                   TAG="${{ github.ref_name }}"
+                  cp target/dist/zeroclaw zeroclaw-linux-x86_64
+                  gh release create "$TAG" --title "$TAG" --notes "" --prerelease 2>/dev/null || true
                   gh release upload "$TAG" zeroclaw-linux-x86_64 --clobber
