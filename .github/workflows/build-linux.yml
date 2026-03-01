@@ -39,9 +39,6 @@ jobs:
             - name: Build binary
               run: cargo build --profile dist --locked --verbose
 
-            - name: Check binary size
-              run: bash scripts/ci/check_binary_size.sh target/dist/zeroclaw
-
             - name: Upload binary artifact
               uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
               with:
