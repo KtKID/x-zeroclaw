@@ -1,17 +1,6 @@
 name: Test E2E
 
 on:
-    push:
-        branches: [dev, main]
-        paths:
-            - "Cargo.toml"
-            - "Cargo.lock"
-            - "src/**"
-            - "crates/**"
-            - "tests/**"
-            - "scripts/**"
-            - "scripts/ci/ensure_cc.sh"
-            - ".github/workflows/test-e2e.yml"
     workflow_dispatch:
 
 concurrency:

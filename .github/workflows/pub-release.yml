@@ -1,8 +1,6 @@
 name: Pub Release
 
 on:
-    push:
-        tags: ["v*"]
     workflow_dispatch:
         inputs:
             release_ref:
@@ -25,9 +23,6 @@ on:
                 required: false
                 default: true
                 type: boolean
-    schedule:
-        # Weekly release-readiness verification on default branch (no publish)
-        - cron: "17 8 * * 1"
 
 concurrency:
     group: release-${{ github.ref || github.run_id }}

@@ -1,8 +1,6 @@
 name: Test Benchmarks
 
 on:
-    schedule:
-        - cron: "0 3 * * 1" # Weekly Monday 3am UTC
     workflow_dispatch:
 
 concurrency:

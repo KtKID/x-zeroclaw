@@ -69,8 +69,6 @@ on:
                 required: true
                 default: true
                 type: boolean
-    schedule:
-        - cron: "45 7 * * 1" # Weekly Monday 07:45 UTC
 
 concurrency:
     group: canary-gate-${{ github.event.inputs.candidate_tag || github.ref || github.run_id }}

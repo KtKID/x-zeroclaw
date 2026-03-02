@@ -1,11 +1,6 @@
 name: Pub Pre-release
 
 on:
-    push:
-        tags:
-            - "v*-alpha.*"
-            - "v*-beta.*"
-            - "v*-rc.*"
     workflow_dispatch:
         inputs:
             tag:
